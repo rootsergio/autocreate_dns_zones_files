@@ -30,7 +30,8 @@ def create_zone_file(zones_and_hosts: dict, files_dir_path: Path):
         with open(Path(files_dir_path, zone + '.db'), 'w') as file:
             file.write(file_contents)
             for host, ip in zones_and_hosts.get(zone).items():
-                file.write(f"{host}\tIN\tA\t{ip}\n")
+                name = host.split(".")[0]
+                file.write(f"{name}\tIN\tA\t{ip}\n")
 
 
 def get_local_zones(filepath: Path) -> str:
